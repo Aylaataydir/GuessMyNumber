@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet">
+    <title>Document</title>
+
+
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: "luckiest Guy", cursive;
+            font-size: 14px;
+            color: #001219;
+            background-image: url(images/abstract-paper-cut-shape-wave-background.jpg);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+
+        }
+
+        h1 {
+            color: #ae2012;
+            font-size: 25px;
+            margin-bottom: 30px;
+        }
+
+        .container {
+            background-color: #fdf0d5;
+            border-radius: 60px;
+            padding: 30px 20px;
+        }
+
+        .style-flex {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .column {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            /* bu grid yapisinin esit sekilde kuculmesini sagladi*/
+            gap: 5px;
+            margin-bottom: 10px;
+        }
+
+        .btn-style {
+            font-family: "luckiest Guy", cursive;
+            font-size: 18px;
+            padding: 10px;
+            border: solid 2px black;
+            border-radius: 10px;
+
+
+        }
+
+        .secret-number {
+            border: solid 2px black;
+            padding: 15px 60px;
+            border-radius: 10px;
+        }
+
+        .input-number {
+            background-color: #e9d8a6;
+            -moz-appearance: textfield;
+            appearance: none;
+            text-align: center;
+        }
+
+        .input-number::-webkit-outer-spin-button,
+        .input-number::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        .check-btn {
+            background-color: #ee9b00;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .check-btn:hover {
+            transform: scale(1.1);
+            box-shadow:
+                0 0 15px 5px rgba(255, 200, 0, 0.7),
+                0 0 30px 10px rgba(255, 150, 0, 0.5);
+        }
+
+        .again {
+            padding: 10px 120px;
+            background-color: #0a9396;
+            margin-top: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .again:hover {
+            transform: scale(1.1);
+            box-shadow:
+                0 0 15px 5px rgba(10, 200, 200, 0.7),
+                0 0 30px 10px rgba(0, 150, 150, 0.5);
+        }
+
+        .msg {
+            color: #780000;
+            margin-bottom: 15px;
+        }
+
+
+        hr {
+            border: none;
+            height: 1px;
+            background-color: #001219;
+            max-width: 100%;
+            margin: 30px 0;
+        }
+
+
+        @media (max-width: 400px) {
+            .container {
+                border-radius: 40px;
+                padding: 30px 30px;
+            }
+        }
+
+        @media (max-width : 450px) {
+            h1 {
+                font-size: 20px;
+                margin-bottom: 30px;
+            }
+
+            body {
+                font-size: 12px;
+            }
+
+            .column {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 5px;
+                margin-bottom: 7px;
+            }
+
+            .again {
+                padding: 10px 100px;
+                margin-top: 15px;
+            }
+
+            .container {
+                border-radius: 40px;
+                padding: 80px 30px;
+            }
+
+            .btn-style {
+                font-size: 14px;
+            }
+
+        }
+
+        @media (max-width : 635px) {
+            .container {
+                margin: 50px 40px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header class="text-center style-flex">
+            <h1>GUESS MY NUMBER</h1>
+            <div class="style-flex">
+                <p>Secret Number:</p>
+                <p class="secret-number">?</p>
+            </div>
+        </header>
+        <hr>
+        <main class=" style-flex">
+            <p>Select a number between 1-100</p>
+            <section class="column">
+                <input type="number" class="input-number btn-style">
+                <button class="check-btn btn-style">Check</button>
+            </section>
+
+            <section class="style-flex">
+                <p class="msg">Starting...</p>
+                <p class="score-label"><i class="fa-solid fa-hashtag"></i> Score: <span class="score">10</span></p>
+                <p class="top-score-label"><i class="fa-solid fa-award"></i> Top Score: <span class="top-score">0</span>
+                </p>
+            </section>
+
+            <section>
+                <button class="again btn-style">Again</button>
+            </section>
+
+
+        </main>
+    </div>
+
+
+
+    <script>
+
+        // radom bir sayi tut
+
+        // input girildiginde check butonunu kontrol et
+        //eger deger girilmediyse uyeri ver, 100 den  fazla ya da az girildiyse de ver.
+        // eger input = random sayi ise;
+        // congrats you win
+        // arkaplani yesil yap
+        // score > top score 
+        //  topscore = score
+
+        // eger input > randomsayi ise
+        // DECREASE degilse INCREASE
+        //score--
+        // score > top score 
+        //  topscore = score
+
+        const guess = document.querySelector(".input-number")
+        const checkBtn = document.querySelector(".check-btn");
+        const againBtn = document.querySelector(".again")
+        const msg = document.querySelector(".msg")
+        const topScoreEl = document.querySelector(".top-score")
+        const scoreEl = document.querySelector(".score")
+        const secretNumber = document.querySelector(".secret-number")
+        const container = document.querySelector(".container")
+
+        let randomNumber = Math.floor(Math.random() * 100) + 1;
+        console.log(randomNumber)
+
+        let score = 10;
+
+        let topScore = Number(localStorage.getItem("topScore")) || 0;
+        topScoreEl.textContent = topScore
+
+
+        // check button
+
+        checkBtn.addEventListener("click", () => {
+            const numberInput = Number(guess.value);
+            if (!numberInput || numberInput < 1 || numberInput > 100) {
+                msg.textContent = "Please enter a number between 1-100";
+                return;  //burda bunu yazmak zorundayiz cunku yazmazsak sonuc true dondugu icin kodu calistirmaya devam ederim. else e gider ve score bir eksiltir.
+            }
+
+            if (numberInput === randomNumber) {
+                document.querySelector(".container").style.backgroundColor = "#9fc490"
+                msg.textContent = "Congrats you win 🎉"
+                secretNumber.textContent = randomNumber
+                guess.disabled = true;
+                checkBtn.disabled = true;
+
+                if (score > topScore) {
+                    topScore = score;
+                    localStorage.setItem("topScore", topScore);
+                    topScoreEl.textContent = topScore;
+                }
+
+            } else {
+                numberInput > randomNumber
+                    ? (msg.textContent = "DECREASE 👇")
+                    : (msg.textContent = "INCREASE ☝️")
+                score--
+                guess.value = "";
+                guess.focus()
+                scoreEl.textContent = score
+
+                if (score <= 0) {
+                    score = 0
+                    guess.disabled = true;
+                    checkBtn.disabled = true;
+                    document.querySelector(".container").style.backgroundColor = "#f26157"
+                    msg.textContent = "You lost 😢"
+                }
+            }
+        })
+
+        // Enter-key
+
+        guess.addEventListener("keydown", (e) => {
+            if (e.key === "Enter") {
+                checkBtn.click();
+            }
+        })
+
+
+        // Again Button
+
+        againBtn.addEventListener("click", () => {
+            randomNumber = Math.floor(Math.random() * 100) + 1;
+            msg.textContent = "Starting...";
+            container.style.backgroundColor = "#fdf0d5"
+            score = 10
+            scoreEl.textContent = score;
+            guess.value = ""
+            guess.disabled = false;
+            checkBtn.disabled = false;
+            guess.focus();
+            secretNumber.textContent = "?"
+        })
+
+    </script>
+
+</body>
+
+</html>

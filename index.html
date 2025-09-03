@@ -19,10 +19,7 @@
             box-sizing: border-box;
         }
 
-        html{
-            overflow: hidden;
-        }
-
+    
         body {
             height: 100vh;
             font-family: "luckiest Guy", cursive;
@@ -37,7 +34,6 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            overflow: hidden;
             gap: 20px;
 
         }
@@ -255,7 +251,7 @@
         const secretNumber = document.querySelector(".secret-number")
         const container = document.querySelector(".container")
 
-        let randomNumber = Math.floor(Math.random() * 100) + 1;
+        let randomNumber = Number(Math.floor(Math.random() * 100) + 1);
         console.log(randomNumber)
 
         let score = 10;
@@ -279,7 +275,7 @@
                 secretNumber.textContent = randomNumber
                 guess.disabled = true;
                 checkBtn.disabled = true;
-                againBtn.focus();
+                
 
                 if (score > topScore) {
                     topScore = score;
@@ -296,7 +292,11 @@
                 guess.focus()
                 scoreEl.textContent = score
 
-                if (score <= 0) {
+                if(score < 0){
+                    score = 0
+                }
+
+                if (score === 0) {
                     score = 0
                     guess.disabled = true;
                     checkBtn.disabled = true;
@@ -304,6 +304,7 @@
                     msg.textContent = "You lost 😢"
                     againBtn.focus();
                 }
+
             }
         })
 

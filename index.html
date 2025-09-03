@@ -67,6 +67,7 @@
 
         .btn-style {
             font-family: "luckiest Guy", cursive;
+            color: #001219;
             font-size: 18px;
             padding: 10px;
             border: solid 2px black;
@@ -136,17 +137,15 @@
             margin: 30px 0;
         }
 
-
-        @media (max-width: 400px) {
+        @media (max-width : 635px) {
             .container {
-                border-radius: 40px;
-                padding: 30px 30px;
+                margin: 50px 40px;
             }
         }
 
-        @media (max-width : 450px) {
+          @media (max-width : 400px) {
             h1 {
-                font-size: 20px;
+                font-size: 25px;
                 margin-bottom: 30px;
             }
 
@@ -168,7 +167,7 @@
 
             .container {
                 border-radius: 40px;
-                padding: 80px 30px;
+                
             }
 
             .btn-style {
@@ -177,11 +176,11 @@
 
         }
 
-        @media (max-width : 635px) {
-            .container {
-                margin: 50px 40px;
-            }
-        }
+
+
+      
+
+        
     </style>
 </head>
 
@@ -270,6 +269,7 @@
                 secretNumber.textContent = randomNumber
                 guess.disabled = true;
                 checkBtn.disabled = true;
+                againBtn.focus();
 
                 if (score > topScore) {
                     topScore = score;
@@ -292,6 +292,7 @@
                     checkBtn.disabled = true;
                     document.querySelector(".container").style.backgroundColor = "#f26157"
                     msg.textContent = "You lost 😢"
+                    againBtn.focus();
                 }
             }
         })
